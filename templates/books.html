@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="flex justify-between items-center mb-6">
+    <h2 class="text-3xl font-semibold">Books</h2>
+    <a href="{{ url_for('add_book') }}" class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded transition">Add New Book</a>
+</div>
+
+<table class="min-w-full bg-white border border-red-300 rounded shadow-sm">
+    <thead class="bg-red-100 text-red-900">
+        <tr>
+            <th class="py-2 px-4 border border-red-300">ID</th>
+            <th class="py-2 px-4 border border-red-300">Title</th>
+            <th class="py-2 px-4 border border-red-300">Author</th>
+            <th class="py-2 px-4 border border-red-300">Year</th>
+            <th class="py-2 px-4 border border-red-300">ISBN</th>
+            <th class="py-2 px-4 border border-red-300">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for book in books %}
+        <tr class="text-center border border-red-300">
+            <td class="py-2 px-4 border border-red-300">{{ book.id }}</td>
+            <td class="py-2 px-4 border border-red-300">{{ book.title }}</td>
+            <td class="py-2 px-4 border border-red-300">{{ book.author }}</td>
+            <td class="py-2 px-4 border border-red-300">{{ book.year or '' }}</td>
+            <td class="py-2 px-4 border border-red-300">{{ book.isbn or '' }}</td>
+            <td class="py-2 px-4 border border-red-300">
+                <a href="{{ url_for('edit_book', id=book.id) }}" class="text-red-700 hover:text-red-900 mr-2"><i class="fas fa-edit"></i></a>
+                <form action="{{ url_for('delete_book', id=book.id) }}" method="POST" class="inline" onsubmit="return confirm('Are you sure you want to delete this book?');">
+                    <button type="submit" class="text-red-700 hover:text-red-900"><i class="fas fa-trash-alt"></i></button>
+                </form>
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="6" class="py-4 text-center text-red-700">No books found.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
