@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 class="text-3xl font-semibold mb-6">Edit Book</h2>
+<form action="{{ url_for('edit_book', id=book.id) }}" method="POST" class="max-w-lg mx-auto bg-red-50 p-6 rounded shadow">
+    <div class="mb-4">
+        <label for="title" class="block text-red-900 font-semibold mb-2">Title</label>
+        <input type="text" id="title" name="title" value="{{ book.title }}" required class="w-full border border-red-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500" />
+    </div>
+    <div class="mb-4">
+        <label for="author" class="block text-red-900 font-semibold mb-2">Author</label>
+        <input type="text" id="author" name="author" value="{{ book.author }}" required class="w-full border border-red-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500" />
+    </div>
+    <div class="mb-4">
+        <label for="year" class="block text-red-900 font-semibold mb-2">Year</label>
+        <input type="number" id="year" name="year" min="0" value="{{ book.year or '' }}" class="w-full border border-red-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500" />
+    </div>
+    <div class="mb-6">
+        <label for="isbn" class="block text-red-900 font-semibold mb-2">ISBN</label>
+        <input type="text" id="isbn" name="isbn" value="{{ book.isbn or '' }}" class="w-full border border-red-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500" />
+    </div>
+    <div class="flex justify-end">
+        <a href="{{ url_for('books') }}" class="mr-4 text-red-700 hover:underline">Cancel</a>
+        <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-6 rounded transition">Update Book</button>
+    </div>
+</form>
+{% endblock %}
