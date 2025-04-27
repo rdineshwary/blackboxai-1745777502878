@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="text-center mt-20">
+    <h2 class="text-4xl font-bold mb-4">Welcome to SDCKL Library Management System</h2>
+    <p class="text-lg text-red-800 mb-8">Manage your college library efficiently and easily.</p>
+    <div class="space-x-4">
+        <a href="{{ url_for('books') }}" class="inline-block bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded transition">Manage Books</a>
+        <a href="{{ url_for('users') }}" class="inline-block bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded transition">Manage Users</a>
+        <a href="{{ url_for('borrow_records') }}" class="inline-block bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded transition">Borrow Records</a>
+    </div>
+</div>
+{% endblock %}
